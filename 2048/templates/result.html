@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲーム結果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function disableButton(button) {
+            button.disabled = true; // 連打防止
+        }
+    </script>
+</head>
+<body>
+    <h1>ゲームオーバー</h1>
+    <p>スコア: {{ score }}</p>
+    <form action="/save_result" method="post" onsubmit="disableButton(this.querySelector('button'))">
+        <input type="hidden" name="score" value="{{ score }}">
+        <label for="username">ユーザー名:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit">結果を保存</button>
+    </form>
+    <a href="/">トップページに戻る</a>
+</body>
+</html>
